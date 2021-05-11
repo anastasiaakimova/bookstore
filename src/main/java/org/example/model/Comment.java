@@ -1,7 +1,7 @@
 package org.example.model;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -10,15 +10,15 @@ public class Comment {
     private Long id;
     private Long idUser;
     private Long idBook;
-    private Timestamp date;
     private String text;
     private User usersByIdUser;
     private Book bookByIdBook;
+    public Comment() {
+    }
 
     public Comment(String comment) {
     }
-    public Comment() {
-    }
+
     public Comment(Long id, String comment) {
     }
 
@@ -26,13 +26,13 @@ public class Comment {
 
     }
 
-    public Comment(String date, String id_book, String id_user, String text) {
+    public Comment(String id_book, String id_user, String text) {
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    public Long getId() {
+    public Collection<Comment> getId() {
         return id;
     }
 
@@ -56,18 +56,8 @@ public class Comment {
         return idBook;
     }
 
-    public void setIdBook(Long idFilm) {
+    public void setIdBook(Long idBook) {
         this.idBook = idBook;
-    }
-
-    @Basic
-    @Column(name = "date", nullable = true)
-    public Timestamp getDate() {
-        return date;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
     }
 
     @Basic
@@ -76,7 +66,7 @@ public class Comment {
         return text;
     }
 
-    public void setText(String reviewText) {
+    public void setText(String commentText) {
         this.text = text;
     }
 
@@ -85,12 +75,12 @@ public class Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(id, comment.id) && Objects.equals(idUser, comment.idUser) && Objects.equals(idBook, comment.idBook) && Objects.equals(date, comment.date) && Objects.equals(text, comment.text) && Objects.equals(usersByIdUser, comment.usersByIdUser) && Objects.equals(bookByIdBook, comment.bookByIdBook);
+        return Objects.equals(id, comment.id) && Objects.equals(idUser, comment.idUser) && Objects.equals(idBook, comment.idBook)  && Objects.equals(text, comment.text) && Objects.equals(usersByIdUser, comment.usersByIdUser) && Objects.equals(bookByIdBook, comment.bookByIdBook);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idUser, idBook, date, text, usersByIdUser, bookByIdBook);
+        return Objects.hash(id, idUser, idBook, text, usersByIdUser, bookByIdBook);
     }
 
     @ManyToOne
@@ -118,7 +108,6 @@ public class Comment {
         return "Comment by:"
                 + getUsersByIdUser() +
                 ", to book: " + getBooksByIdBook() +
-                ", date:" + date +
                 "\nText:" + text;
     }
 

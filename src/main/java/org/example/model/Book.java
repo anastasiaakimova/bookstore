@@ -1,6 +1,8 @@
 package org.example.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table(name = "books", schema = "bookmanager")
@@ -9,6 +11,7 @@ public class Book {
     private String bookTitle;
     private String bookAuthor;
     private int bookPrice;
+    private Collection<Comment> commentsById;
 
     public Book(String bookTitle, String bookAuthor, int bookPrice) {
 
@@ -65,6 +68,25 @@ public class Book {
         this.bookPrice = bookPrice;
     }
 
+    @OneToMany(mappedBy = "booksByIdBook")
+    public Collection<Comment> comment = new ArrayList<Comment>();
+
+    public Collection<Comment> getCommentsById() {
+        return commentsById;
+    }
+
+    public void setCommentsById(Collection<Comment> commentsById) {
+        this.commentsById = commentsById;
+    }
+
+    public Collection<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(Collection<Comment> comment) {
+        this.comment = comment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,12 +117,10 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Book" +
                 "id: " + id +
                 ", bookTitle: " + bookTitle +
                 ", bookAuthor: " + bookAuthor +
-                ", bookPrice: " + bookPrice +
-                ", user: " + user +
-                '}';
+                ", bookPrice: " + bookPrice;
     }
 }

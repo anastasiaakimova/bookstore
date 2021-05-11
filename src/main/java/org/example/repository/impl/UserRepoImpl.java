@@ -1,5 +1,6 @@
 package org.example.repository.impl;
 
+import org.example.model.Book;
 import org.example.model.User;
 import org.example.repository.UserRepo;
 import org.example.util.SessionUtil;
@@ -12,13 +13,14 @@ public class UserRepoImpl extends SessionUtil implements UserRepo {
     private Session session;
 
     @Override
-    public void add(User user) throws SQLException {
+    public Book add(User user) throws SQLException {
         openTransactionSession();
         Session session = getSession();
         session.save(user);
 
         //close session with a transaction
         closeTransactionSesstion();
+        return null;
     }
 
     @Override

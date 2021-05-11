@@ -20,7 +20,7 @@ public class BookController {
         return bookRepo.getById(id);
     }
 
-    public Book editBook(Book book) throws SQLException {
+    public Book updateBook(Book book) throws SQLException {
         return bookRepo.update(book);
     }
 

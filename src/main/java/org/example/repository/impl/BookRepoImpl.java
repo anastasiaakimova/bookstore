@@ -34,13 +34,14 @@ public class BookRepoImpl extends SessionUtil implements BookRepo {
     }
 
     @Override
-    public void add(Book book) throws SQLException {
+    public Book add(Book book) throws SQLException {
         openTransactionSession();
         Session session = getSession();
         session.save(book);
 
         //close session with a transaction
         closeTransactionSesstion();
+        return book;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.example.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ public class User {
     private String login;
     private String password;
     private String mail;
+    private Collection<Comment> commentsById;
 
     @Column(name = "book_id")
     @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
@@ -80,6 +82,16 @@ public class User {
         this.mail = mail;
     }
 
+    @OneToMany(mappedBy = "usersByIdUser")
+    public Collection<Comment> getCommentsById() {
+        return commentsById;
+    }
+
+    public void setCommentsById(Collection<Comment> commentsById) {
+        this.commentsById = commentsById;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,13 +120,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "User " +
                 "id:" + id +
                 ", username:" + username +
                 ", login:" + login +
                 ", password:" + password +
-                ", mail:" + mail +
-                ", userBooks:" + userBooks +
-                '}';
+                ", mail:" + mail;
     }
 }

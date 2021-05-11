@@ -12,6 +12,9 @@ import java.util.Scanner;
 public class UserView {
     private Scanner scanner = new Scanner(System.in);
     private Scanner scanner1 = new Scanner(System.in);
+    private Scanner scanner2 = new Scanner(System.in);
+    private Scanner scanner3 = new Scanner(System.in);
+    private Scanner scanner4 = new Scanner(System.in);
     private UserController userController = new UserController();
     private BookController bookController = new BookController();
 
@@ -32,8 +35,11 @@ public class UserView {
         System.out.println("Enter id in order to get user :");
         Long id = Long.parseLong(scanner.next());
         try {
-            if (userController.getUserById(id) != null)
-                System.out.println(userController.getUserById(id).toString());
+            if (userController.getUserById(id) != null){
+                System.out.println(userController.getUserById(id).toString());}
+            else {
+                System.out.println("This id is doesn't exist");
+            }
 
         } catch (NullPointerException e) {
             System.out.println("There is no such number ");
@@ -47,15 +53,15 @@ public class UserView {
             User newUser = new User();
 
             System.out.println("Enter name :");
-            String username = scanner.next();
+            String username = scanner1.next();
             newUser.setUsername(username);
 
             System.out.println("Enter login :");
-            String login = scanner.next();
+            String login = scanner1.next();
             newUser.setLogin(login);
 
             System.out.println("Enter password :");
-            String password = scanner.next();
+            String password = scanner1.next();
             newUser.setPassword(password);
 
             System.out.println("Enter email :");
@@ -97,25 +103,25 @@ public class UserView {
     public void updateUser() throws SQLException {
         try {
             System.out.println("Enter id in order to find element :");
-            Long id = Long.parseLong(scanner.next());
+            Long id = Long.parseLong(scanner2.next());
 
             User newUser = new User();
             newUser = userController.getUserById(id);
 
             System.out.println("Enter name :");
-            String username = scanner1.next();
+            String username = scanner3.nextLine();
             newUser.setUsername(username);
 
             System.out.println("Enter login :");
-            String login = scanner1.next();
+            String login = scanner3.nextLine();
             newUser.setLogin(login);
 
             System.out.println("Enter password :");
-            String password = scanner1.next();
+            String password = scanner3.nextLine();
             newUser.setPassword(password);
 
             System.out.println("Enter email :");
-            String mail = scanner1.next();
+            String mail = scanner3.nextLine();
             newUser.setMail(mail);
 
 //            Set<Book> bookSet = new HashSet<>();

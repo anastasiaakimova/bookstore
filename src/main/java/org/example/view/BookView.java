@@ -13,6 +13,9 @@ import java.util.Scanner;
 public class BookView {
     private Scanner scanner = new Scanner(System.in);
     private Scanner scanner1 = new Scanner(System.in);
+    private Scanner scanner2 = new Scanner(System.in);
+    private Scanner scanner3 = new Scanner(System.in);
+    private Scanner scanner4 = new Scanner(System.in);
     private BookController bookController = new BookController();
 
     public void printBook() throws SQLException {
@@ -38,8 +41,11 @@ public class BookView {
         System.out.println("Enter id in order to get book :");
         Long id = Long.parseLong(scanner.next());
         try {
-            if (bookController.getBookById(id) != null)
-                System.out.println(bookController.getBookById(id).toString());
+            if (bookController.getBookById(id) != null){
+                System.out.println(bookController.getBookById(id).toString());}
+            else {
+                System.out.println("This id is doesn't exist");
+            }
 
         } catch (NullPointerException e) {
             System.out.println("There is no such number ");
@@ -51,17 +57,16 @@ public class BookView {
     public void saveBook() throws SQLException {
         try {
             Book newBook = new Book();
-
             System.out.println("Enter book title : ");
-            String bookTile = scanner.next();
+            String bookTile = scanner3.nextLine();
             newBook.setBookTitle(bookTile);
 
             System.out.println("Enter author :");
-            String bookAuthor = scanner.next();
+            String bookAuthor = scanner3.nextLine();
             newBook.setBookAuthor(bookAuthor);
 
             System.out.println("Enter price :");
-            int bookPrice = scanner1.nextInt();
+            int bookPrice = Integer.parseInt(scanner3.nextLine());
             newBook.setBookPrice(bookPrice);
 
             bookController.createBook(newBook);
@@ -73,25 +78,24 @@ public class BookView {
     public void updateBook() throws SQLException {
         try {
             System.out.println("Enter id in order to find element :");
-            Long id = Long.parseLong(scanner1.next());
+            Long id = Long.parseLong(scanner2.next());
 
             Book newBook = new Book();
             newBook =bookController.getBookById(id);
 
-
             System.out.println("Enter book title : ");
-            String bookTile = scanner1.next();
+            String bookTile = scanner4.nextLine();
             newBook.setBookTitle(bookTile);
 
             System.out.println("Enter author :");
-            String bookAuthor = scanner1.next();
+            String bookAuthor = scanner4.nextLine();
             newBook.setBookAuthor(bookAuthor);
 
             System.out.println("Enter price :");
-            int bookPrice = scanner.nextInt();
+            int bookPrice = scanner4.nextInt();
             newBook.setBookPrice(bookPrice);
 
-            bookController.editBook(newBook);
+            bookController.updateBook(newBook);
         } catch (InputMismatchException e) {
             System.out.print(e.getMessage());
         }
