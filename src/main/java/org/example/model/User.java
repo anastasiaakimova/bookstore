@@ -30,7 +30,8 @@ public class User {
 
     private String mail;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ElementCollection
+    @OneToMany(targetEntity=Comment.class, mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     private Collection<Comment> comments;
 
     public Collection<Comment> getComments() {

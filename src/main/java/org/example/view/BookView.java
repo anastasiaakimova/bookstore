@@ -20,7 +20,7 @@ public class BookView {
 
     public void printBook() throws SQLException {
         List<Book> books = bookController.showAllBooks();
-        System.out.println("List of all clients : ");
+        System.out.println("List of all books : ");
         books.forEach(book1 -> System.out.println(book1.toString()));
     }
 

@@ -7,17 +7,35 @@ import java.util.Collection;
 @Entity
 @Table(name = "books", schema = "bookmanager")
 public class Book {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Basic
+    @Column(name = "book_title", nullable = true, length = 255)
     private String bookTitle;
+
+    @Basic
+    @Column(name = "book_author", nullable = true, length = 255)
     private String bookAuthor;
+
+    @Basic
+    @Column(name = "book_price", nullable = true)
     private int bookPrice;
 
-    @OneToMany(mappedBy = "book", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
+    @ElementCollection
+    @OneToMany(targetEntity = Comment.class, mappedBy = "book", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
     private Collection<Comment> comments;
 
     public Collection<Comment> getComments() {
         return comments;
     }
+//
+//    @ManyToOne
+//    @JoinColumn(name = "user_id")
+//    private User user;
+
     public void setComments(Collection<Comment> comments) {
         this.comments = comments;
     }
@@ -34,9 +52,6 @@ public class Book {
     public Book(Long id, String book) {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     public Long getId() {
         return id;
     }
@@ -45,8 +60,6 @@ public class Book {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "book_title", nullable = true, length = 255)
     public String getBookTitle() {
         return bookTitle;
     }
@@ -55,8 +68,6 @@ public class Book {
         this.bookTitle = bookTitle;
     }
 
-    @Basic
-    @Column(name = "book_author", nullable = true, length = 255)
     public String getBookAuthor() {
         return bookAuthor;
     }
@@ -65,8 +76,6 @@ public class Book {
         this.bookAuthor = bookAuthor;
     }
 
-    @Basic
-    @Column(name = "book_price", nullable = true)
     public int getBookPrice() {
         return bookPrice;
     }
@@ -75,15 +84,13 @@ public class Book {
         this.bookPrice = bookPrice;
     }
 
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -108,10 +115,6 @@ public class Book {
         result = 31 * result + bookPrice;
         return result;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
 
     @Override
     public String toString() {

@@ -21,7 +21,7 @@ public class UserView {
 
     public void printUsers() throws SQLException {
         List<User> users = userController.printAll();
-        System.out.println("List of all clients : ");
+        System.out.println("List of all users : ");
         users.forEach(user1 -> System.out.println(user1.toString()));
     }
 

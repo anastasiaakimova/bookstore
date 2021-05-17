@@ -5,10 +5,18 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "comment", schema = "bookmanager", catalog = "")
-public class Comment  extends AbstractEntity{
-//    private Long id;
+public class Comment extends AbstractEntity {
+    //    private Long id;
+
+    @Basic
+    @Column(name = "id_user", nullable = true)
     private Long idUser;
+    @Basic
+    @Column(name = "id_book", nullable = true)
     private Long idBook;
+
+    @Basic
+    @Column(name = "text", nullable = true, length = -1)
     private String text;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -19,23 +27,33 @@ public class Comment  extends AbstractEntity{
     @JoinColumn(name = "id_book", referencedColumnName = "id", insertable = false, updatable = false)
     private Book book;
 
-    public Comment() {}
-    public Comment(String comment) {}
-    public Comment(Long id, String comment) {}
-    public Comment(String text, String book) {}
-    public Comment(String id_book, String id_user, String text) {}
+    public Comment() {
+    }
+
+    public Comment(String comment) {
+    }
+
+    public Comment(Long id, String comment) {
+    }
+
+    public Comment(String text, String book) {
+    }
+
+    public Comment(String id_book, String id_user, String text) {
+    }
 
     public User getUser() {
         return user;
     }
+
     public void setUser(User user) {
         this.user = user;
     }
 
-
     public Book getBooksByIdBook() {
         return book;
     }
+
     public void setBooksByIdBook(Book booksByIdBook) {
         this.book = booksByIdBook;
     }
@@ -51,8 +69,6 @@ public class Comment  extends AbstractEntity{
 //        this.id = id;
 //    }
 
-    @Basic
-    @Column(name = "id_user", nullable = true)
     public Long getIdUser() {
         return idUser;
     }
@@ -61,8 +77,6 @@ public class Comment  extends AbstractEntity{
         this.idUser = idUser;
     }
 
-    @Basic
-    @Column(name = "id_book", nullable = true)
     public Long getIdBook() {
         return idBook;
     }
@@ -71,9 +85,7 @@ public class Comment  extends AbstractEntity{
         this.idBook = idBook;
     }
 
-    @Basic
-    @Column(name = "text", nullable = true, length = -1)
-    public String getText() {
+   public String getText() {
         return text;
     }
 
@@ -86,7 +98,7 @@ public class Comment  extends AbstractEntity{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(id, comment.id) && Objects.equals(idUser, comment.idUser) && Objects.equals(idBook, comment.idBook)  && Objects.equals(text, comment.text) && Objects.equals(user, comment.user) && Objects.equals(book, comment.book);
+        return Objects.equals(id, comment.id) && Objects.equals(idUser, comment.idUser) && Objects.equals(idBook, comment.idBook) && Objects.equals(text, comment.text) && Objects.equals(user, comment.user) && Objects.equals(book, comment.book);
     }
 
     @Override
