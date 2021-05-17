@@ -8,31 +8,50 @@ import java.util.Set;
 @Entity
 @Table(name = "users", schema = "bookmanager")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Long id;
+
+    @Basic
+    @Column(name = "username", nullable = true, length = 255)
     private String username;
+
+    @Basic
+    @Column(name = "login", nullable = true, length = 255)
     private String login;
+
+    @Basic
+    @Column(name = "password", nullable = true, length = 255)
     private String password;
+
+    @Basic
+    @Column(name = "mail", nullable = true, length = 255)
+
     private String mail;
-    private Collection<Comment> commentsById;
 
-    @Column(name = "book_id")
-    @OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    private Set<Book> userBooks = new HashSet<>();
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    private Collection<Comment> comments;
 
-    public User(String username, String login, String password, String mail, Set<Book> bookSet) {
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
+    }
+
+ //   private Set<Book> userBooks = new HashSet<>();
+
+    public User(String username, String login, String password, String mail) {
         this.username = username;
         this.login = login;
         this.password = password;
         this.mail = mail;
-        this.userBooks = bookSet;
-    }
 
-    public User() {
     }
+    public User() { }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     public Long getId() {
         return id;
     }
@@ -41,8 +60,7 @@ public class User {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "username", nullable = true, length = 255)
+
     public String getUsername() {
         return username;
     }
@@ -52,8 +70,6 @@ public class User {
     }
 
 
-    @Basic
-    @Column(name = "login", nullable = true, length = 255)
     public String getLogin() {
         return login;
     }
@@ -62,8 +78,7 @@ public class User {
         this.login = login;
     }
 
-    @Basic
-    @Column(name = "password", nullable = true, length = 255)
+
     public String getPassword() {
         return password;
     }
@@ -72,23 +87,12 @@ public class User {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "mail", nullable = true, length = 255)
     public String getMail() {
         return mail;
     }
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-    @OneToMany(mappedBy = "usersByIdUser")
-    public Collection<Comment> getCommentsById() {
-        return commentsById;
-    }
-
-    public void setCommentsById(Collection<Comment> commentsById) {
-        this.commentsById = commentsById;
     }
 
 

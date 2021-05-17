@@ -11,14 +11,21 @@ public class Book {
     private String bookTitle;
     private String bookAuthor;
     private int bookPrice;
-    private Collection<Comment> commentsById;
+
+    @OneToMany(mappedBy = "book", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Collection<Comment> comments;
+
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
+    }
 
     public Book(String bookTitle, String bookAuthor, int bookPrice) {
-
     }
 
     public Book() {
-
     }
 
     public Book(String book) {
@@ -68,23 +75,14 @@ public class Book {
         this.bookPrice = bookPrice;
     }
 
-    @OneToMany(mappedBy = "booksByIdBook")
-    public Collection<Comment> comment = new ArrayList<Comment>();
 
-    public Collection<Comment> getCommentsById() {
-        return commentsById;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setCommentsById(Collection<Comment> commentsById) {
-        this.commentsById = commentsById;
-    }
-
-    public Collection<Comment> getComment() {
-        return comment;
-    }
-
-    public void setComment(Collection<Comment> comment) {
-        this.comment = comment;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

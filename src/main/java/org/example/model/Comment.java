@@ -1,44 +1,55 @@
 package org.example.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "comment", schema = "bookmanager", catalog = "")
-public class Comment {
-    private Long id;
+public class Comment  extends AbstractEntity{
+//    private Long id;
     private Long idUser;
     private Long idBook;
     private String text;
-    private User usersByIdUser;
-    private Book bookByIdBook;
-    public Comment() {
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_user", referencedColumnName = "id", insertable = false, updatable = false)
+    private User user;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_book", referencedColumnName = "id", insertable = false, updatable = false)
+    private Book book;
+
+    public Comment() {}
+    public Comment(String comment) {}
+    public Comment(Long id, String comment) {}
+    public Comment(String text, String book) {}
+    public Comment(String id_book, String id_user, String text) {}
+
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Comment(String comment) {
+
+    public Book getBooksByIdBook() {
+        return book;
+    }
+    public void setBooksByIdBook(Book booksByIdBook) {
+        this.book = booksByIdBook;
     }
 
-    public Comment(Long id, String comment) {
-    }
-
-    public Comment(String text, String bookByIdBook) {
-
-    }
-
-    public Comment(String id_book, String id_user, String text) {
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    public Collection<Comment> getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id", nullable = false)
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
     @Basic
     @Column(name = "id_user", nullable = true)
@@ -75,40 +86,19 @@ public class Comment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comment comment = (Comment) o;
-        return Objects.equals(id, comment.id) && Objects.equals(idUser, comment.idUser) && Objects.equals(idBook, comment.idBook)  && Objects.equals(text, comment.text) && Objects.equals(usersByIdUser, comment.usersByIdUser) && Objects.equals(bookByIdBook, comment.bookByIdBook);
+        return Objects.equals(id, comment.id) && Objects.equals(idUser, comment.idUser) && Objects.equals(idBook, comment.idBook)  && Objects.equals(text, comment.text) && Objects.equals(user, comment.user) && Objects.equals(book, comment.book);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, idUser, idBook, text, usersByIdUser, bookByIdBook);
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_User", referencedColumnName = "id", insertable = false, updatable = false)
-    public User getUsersByIdUser() {
-        return usersByIdUser;
-    }
-
-    public void setUsersByIdUser(User usersByIdUser) {
-        this.usersByIdUser = usersByIdUser;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_book", referencedColumnName = "id", insertable = false, updatable = false)
-    public Book getBooksByIdBook() {
-        return bookByIdBook;
-    }
-
-    public void setBooksByIdBook(Book booksByIdBook) {
-        this.bookByIdBook = booksByIdBook;
+        return Objects.hash(id, idUser, idBook, text, user, book);
     }
 
     @Override
     public String toString() {
         return "Comment by:"
-                + getUsersByIdUser() +
+                + getUser() +
                 ", to book: " + getBooksByIdBook() +
                 "\nText:" + text;
     }
-
 }

@@ -55,7 +55,7 @@ public class CommentView {
             System.out.println("Enter id user : ");
             Long id_user = scanner1.nextLong();
             newComment.setIdUser(id_user);
-            user.setCommentsById(newComment.getId());
+        //    user.setCommentsById(newComment.getId());
 
             System.out.println("Enter comment text : ");
             String text = scanner1.nextLine();
