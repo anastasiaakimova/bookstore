@@ -1,5 +1,8 @@
 package org.example.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,17 +27,17 @@ public class Book {
     @Column(name = "book_price", nullable = true)
     private int bookPrice;
 
-    @ElementCollection
-    @OneToMany(targetEntity = Comment.class, mappedBy = "book", cascade = {CascadeType.ALL}, orphanRemoval = true, fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(targetEntity = Comment.class, mappedBy = "book", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private Collection<Comment> comments;
 
     public Collection<Comment> getComments() {
         return comments;
     }
-//
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(targetEntity=Orders.class, mappedBy = "book", cascade = {CascadeType.ALL})
+    private Collection<Orders> orders;
 
     public void setComments(Collection<Comment> comments) {
         this.comments = comments;

@@ -1,5 +1,8 @@
 package org.example.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -30,8 +33,8 @@ public class User {
 
     private String mail;
 
-    @ElementCollection
-    @OneToMany(targetEntity=Comment.class, mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(targetEntity=Comment.class, mappedBy = "user", cascade = {CascadeType.ALL})
     private Collection<Comment> comments;
 
     public Collection<Comment> getComments() {
@@ -42,7 +45,11 @@ public class User {
         this.comments = comments;
     }
 
- //   private Set<Book> userBooks = new HashSet<>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(targetEntity=Orders.class, mappedBy = "user", cascade = {CascadeType.ALL})
+    private Collection<Orders> orders;
+
+    //   private Set<Book> userBooks = new HashSet<>();
 
     public User(String username, String login, String password, String mail) {
         this.username = username;
