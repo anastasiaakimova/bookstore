@@ -61,3 +61,25 @@ SET `book_title`  = 'Алые паруса',
     `book_author` = 'Грин',
     `book_price`  = '700'
 WHERE (`id` = '5');
+
+CREATE TABLE `bookmanager`.`orders`
+(
+    `id_order` INT NOT NULL AUTO_INCREMENT,
+    `id_user`  INT NULL,
+    `id_book`  INT NULL,
+    PRIMARY KEY (`id_order`),
+    CONSTRAINT `id_user`
+        FOREIGN KEY (`id_user`)
+            REFERENCES `bookmanager`.`users` (`id`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT `id_book`
+        FOREIGN KEY (`id_book`)
+            REFERENCES `bookmanager`.`books` (`id`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+);
+
+
+
+
