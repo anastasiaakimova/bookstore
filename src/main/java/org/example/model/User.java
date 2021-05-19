@@ -10,11 +10,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "bookmanager")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
+public class User extends AbstractEntity {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id", nullable = false)
+//    private Long id;
 
     @Basic
     @Column(name = "username", nullable = true, length = 255)
@@ -60,13 +60,13 @@ public class User {
     }
     public User() { }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
 
     public String getUsername() {

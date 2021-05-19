@@ -6,11 +6,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "orders", schema = "bookmanager")
-public class Orders {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_order", nullable = false)
-    private Long id;
+public class Orders extends AbstractEntity  {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id_order", nullable = false)
+//    private Long id;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_user", referencedColumnName = "id", insertable = false, updatable = false)
@@ -20,12 +20,12 @@ public class Orders {
     @JoinColumn(name = "id_book", referencedColumnName = "id", insertable = false, updatable = false)
     private Book book;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
 
 }
