@@ -13,7 +13,7 @@ public class CommentRepoImpl extends SessionUtil implements CommentRepo {
     private Session session;
 
     @Override
-    public Book add(Comment comment) throws SQLException {
+    public Comment add(Comment comment) throws SQLException {
         openTransactionSession();
         Session session = getSession();
         session.save(comment);

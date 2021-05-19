@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface GenericRepository<T, ID> {
     //create
-    Book add(T t) throws SQLException;
+    T add(T t) throws SQLException;
 
     //read
     List<T> getAll() throws SQLException;

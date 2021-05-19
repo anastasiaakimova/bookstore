@@ -13,7 +13,7 @@ public class UserRepoImpl extends SessionUtil implements UserRepo {
     private Session session;
 
     @Override
-    public Book add(User user) throws SQLException {
+    public User add(User user) throws SQLException {
         openTransactionSession();
         Session session = getSession();
         session.save(user);
