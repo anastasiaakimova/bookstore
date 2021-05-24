@@ -9,11 +9,6 @@ import java.util.Collection;
 @Entity
 @Table(name = "books", schema = "bookmanager")
 public class Book extends AbstractEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id", nullable = false)
-//    private Long id;
-
     @Basic
     @Column(name = "book_title", nullable = true, length = 255)
     private String bookTitle;
@@ -54,14 +49,6 @@ public class Book extends AbstractEntity {
     public Book(Long id, String book) {
     }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
     public String getBookTitle() {
         return bookTitle;
     }
@@ -84,38 +71,6 @@ public class Book extends AbstractEntity {
 
     public void setBookPrice(int bookPrice) {
         this.bookPrice = bookPrice;
-    }
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Book that = (Book) o;
-
-        if (bookPrice != that.bookPrice) return false;
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (bookTitle != null ? !bookTitle.equals(that.bookTitle) : that.bookTitle != null) return false;
-        if (bookAuthor != null ? !bookAuthor.equals(that.bookAuthor) : that.bookAuthor != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (bookTitle != null ? bookTitle.hashCode() : 0);
-        result = 31 * result + (bookAuthor != null ? bookAuthor.hashCode() : 0);
-        result = 31 * result + bookPrice;
-        return result;
     }
 
     @Override

@@ -14,7 +14,7 @@ public class OrderRepoImpl extends SessionUtil implements OrderRepo {
     private Session session;
 
     @Override
-    public Order add(Orders orders) throws SQLException {
+    public Orders add(Orders orders) throws SQLException {
         return null;
     }
 
