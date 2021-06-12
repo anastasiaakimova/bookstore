@@ -1,15 +1,14 @@
 package org.example.repository.impl;
 
-import org.example.model.Book;
 import org.example.model.User;
-import org.example.repository.UserRepo;
+import org.example.repository.GenericRepository;
 import org.example.util.SessionUtil;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserRepoImpl extends SessionUtil implements UserRepo {
+public class UserRepoImpl extends SessionUtil implements GenericRepository <User, Long> {
     private Session session;
 
     @Override

@@ -1,15 +1,14 @@
 package org.example.controller;
 
 import org.example.model.Comment;
-import org.example.model.User;
-import org.example.repository.CommentRepo;
+import org.example.repository.GenericRepository;
 import org.example.repository.impl.CommentRepoImpl;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class CommentController {
-    private CommentRepo commentRepo = new CommentRepoImpl();
+    private GenericRepository commentRepo = new CommentRepoImpl();
 
     public List<Comment> printAll() throws SQLException {
         return commentRepo.getAll();
@@ -28,6 +27,6 @@ public class CommentController {
     }
 
     public Comment getValueById(Long id) throws SQLException {
-        return commentRepo.getById(id);
+        return (Comment) commentRepo.getById(id);
     }
 }

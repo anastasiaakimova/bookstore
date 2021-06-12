@@ -11,10 +11,6 @@ import java.util.Set;
 @Entity
 @Table(name = "users", schema = "bookmanager")
 public class User extends AbstractEntity {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id", nullable = false)
-//    private Long id;
 
     @Basic
     @Column(name = "username", nullable = true, length = 255)
@@ -60,15 +56,6 @@ public class User extends AbstractEntity {
     }
     public User() { }
 
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
-
     public String getUsername() {
         return username;
     }
@@ -101,33 +88,6 @@ public class User extends AbstractEntity {
 
     public void setMail(String mail) {
         this.mail = mail;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User that = (User) o;
-
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (login != null ? !login.equals(that.login) : that.login != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (login != null ? login.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (mail != null ? mail.hashCode() : 0);
-        return result;
     }
 
     @Override

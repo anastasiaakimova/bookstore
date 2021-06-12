@@ -5,17 +5,11 @@ import org.example.model.Book;
 import org.hibernate.service.spi.ServiceException;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class BookView {
-    private Scanner scanner = new Scanner(System.in);
-    private Scanner scanner1 = new Scanner(System.in);
-    private Scanner scanner2 = new Scanner(System.in);
-    private Scanner scanner3 = new Scanner(System.in);
-    private Scanner scanner4 = new Scanner(System.in);
     private BookController bookController = new BookController();
 
     public void printBook() throws SQLException {
@@ -25,6 +19,7 @@ public class BookView {
     }
 
     public void deleteBook() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id in order to delete row : ");
         Long id = Long.parseLong(scanner.next());
         try {
@@ -38,6 +33,7 @@ public class BookView {
 
 
     public void getByIdBook() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id in order to get book :");
         Long id = Long.parseLong(scanner.next());
         try {
@@ -56,17 +52,18 @@ public class BookView {
 
     public void saveBook() throws SQLException {
         try {
+            Scanner scanner = new Scanner(System.in);
             Book newBook = new Book();
             System.out.println("Enter book title : ");
-            String bookTile = scanner3.nextLine();
+            String bookTile = scanner.nextLine();
             newBook.setBookTitle(bookTile);
 
             System.out.println("Enter author :");
-            String bookAuthor = scanner3.nextLine();
+            String bookAuthor = scanner.nextLine();
             newBook.setBookAuthor(bookAuthor);
 
             System.out.println("Enter price :");
-            int bookPrice = Integer.parseInt(scanner3.nextLine());
+            int bookPrice = Integer.parseInt(scanner.nextLine());
             newBook.setBookPrice(bookPrice);
 
             bookController.createBook(newBook);
@@ -77,22 +74,23 @@ public class BookView {
 
     public void updateBook() throws SQLException {
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Enter id in order to find element :");
-            Long id = Long.parseLong(scanner2.next());
+            Long id = Long.parseLong(scanner.next());
 
             Book newBook = new Book();
             newBook =bookController.getBookById(id);
 
             System.out.println("Enter book title : ");
-            String bookTile = scanner4.nextLine();
+            String bookTile = scanner.nextLine();
             newBook.setBookTitle(bookTile);
 
             System.out.println("Enter author :");
-            String bookAuthor = scanner4.nextLine();
+            String bookAuthor = scanner.nextLine();
             newBook.setBookAuthor(bookAuthor);
 
             System.out.println("Enter price :");
-            int bookPrice = scanner4.nextInt();
+            int bookPrice = scanner.nextInt();
             newBook.setBookPrice(bookPrice);
 
             bookController.updateBook(newBook);
@@ -112,6 +110,7 @@ public class BookView {
             System.out.println("4. Update row  ");
             System.out.println("5. Search by id ");
             System.out.println("6. End ");
+            Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:

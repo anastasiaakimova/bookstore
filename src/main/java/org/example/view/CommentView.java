@@ -1,20 +1,14 @@
 package org.example.view;
 
 import org.example.controller.CommentController;
-import org.example.model.Book;
 import org.example.model.Comment;
 import org.example.model.User;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CommentView {
-    private Scanner scanner = new Scanner(System.in);
-    private Scanner scanner1 = new Scanner(System.in);
-    private Scanner scanner2 = new Scanner(System.in);
-    private Scanner scanner3 = new Scanner(System.in);
     private CommentController commentController = new CommentController();
 
     public void printComment() throws SQLException {
@@ -23,6 +17,8 @@ public class CommentView {
     }
 
     public void deleteComment() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("Enter id in order to delete row : ");
         Long id = Long.parseLong(scanner.next());
         commentController.deleteComment(id);
@@ -31,6 +27,7 @@ public class CommentView {
     public void getByIdComment() throws SQLException {
 
         try {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Enter id in order to get comment :");
             Long id = Long.parseLong(scanner.next());
             if (commentController.getValueById(id) != null)
@@ -45,51 +42,49 @@ public class CommentView {
 
     public void saveComment() throws SQLException {
         try {
+            Scanner scanner = new Scanner(System.in);
             Comment newComment = new Comment();
             User user = new User();
 
             System.out.println("Enter id book : ");
-            Long id_book = scanner1.nextLong();
+            Long id_book = scanner.nextLong();
             newComment.setIdBook(id_book);
 
             System.out.println("Enter id user : ");
-            Long id_user = scanner1.nextLong();
+            Long id_user = scanner.nextLong();
             newComment.setIdUser(id_user);
         //    user.setCommentsById(newComment.getId());
 
             System.out.println("Enter comment text : ");
-            String text = scanner1.nextLine();
+            String text = scanner.nextLine();
             newComment.setText(text);
 
-//            System.out.println("Enter book :");
-//            String bookByIdBook = scanner1.nextLine();
-//
+
             commentController.saveComment(newComment);
         } catch (InputMismatchException e) {
             System.out.print(e.getMessage());
         }
-        String comment = scanner.next();
 
     }
 
     public void updateComment() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id in order to find element :");
-        Long id = Long.parseLong(scanner2.next());
+        Long id = Long.parseLong(scanner.next());
 
         Comment newComment = new Comment();
         newComment = commentController.getValueById(id);
 
-
         System.out.println("Enter id book : ");
-        String id_book = scanner1.nextLine();
+        String id_book = scanner.nextLine();
         newComment.setIdBook(Long.valueOf(id_book));
 
         System.out.println("Enter id user : ");
-        String id_user = scanner1.nextLine();
+        String id_user = scanner.nextLine();
         newComment.setIdUser(Long.valueOf(id_user));
 
         System.out.println("Enter comment text : ");
-        String text = scanner1.nextLine();
+        String text = scanner.nextLine();
         newComment.setText(text);
         commentController.updateComment(newComment);
 
@@ -106,6 +101,7 @@ public class CommentView {
             System.out.println("4. Update row  ");
             System.out.println("5. Search by id ");
             System.out.println("6. End ");
+            Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:

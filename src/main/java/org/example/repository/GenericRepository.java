@@ -1,7 +1,5 @@
 package org.example.repository;
 
-import org.example.model.Book;
-
 import java.sql.SQLException;
 import java.util.List;
 

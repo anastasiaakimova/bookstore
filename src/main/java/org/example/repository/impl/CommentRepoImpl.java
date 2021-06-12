@@ -1,15 +1,15 @@
 package org.example.repository.impl;
 
-import org.example.model.Book;
+
 import org.example.model.Comment;
-import org.example.repository.CommentRepo;
+import org.example.repository.GenericRepository;
 import org.example.util.SessionUtil;
 import org.hibernate.Session;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class CommentRepoImpl extends SessionUtil implements CommentRepo {
+public class CommentRepoImpl extends SessionUtil implements GenericRepository <Comment, Long> {
     private Session session;
 
     @Override

@@ -6,7 +6,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "comment", schema = "bookmanager", catalog = "")
 public class Comment extends AbstractEntity {
-    //    private Long id;
 
     @Basic
     @Column(name = "id_user", nullable = true)
@@ -58,17 +57,6 @@ public class Comment extends AbstractEntity {
         this.book = booksByIdBook;
     }
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "id", nullable = false)
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-
     public Long getIdUser() {
         return idUser;
     }
@@ -91,19 +79,6 @@ public class Comment extends AbstractEntity {
 
     public void setText(String commentText) {
         this.text = text;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Comment comment = (Comment) o;
-        return Objects.equals(id, comment.id) && Objects.equals(idUser, comment.idUser) && Objects.equals(idBook, comment.idBook) && Objects.equals(text, comment.text) && Objects.equals(user, comment.user) && Objects.equals(book, comment.book);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, idUser, idBook, text, user, book);
     }
 
     @Override

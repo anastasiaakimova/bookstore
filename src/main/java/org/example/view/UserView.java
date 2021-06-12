@@ -10,11 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class UserView {
-    private Scanner scanner = new Scanner(System.in);
-    private Scanner scanner1 = new Scanner(System.in);
-    private Scanner scanner2 = new Scanner(System.in);
-    private Scanner scanner3 = new Scanner(System.in);
-    private Scanner scanner4 = new Scanner(System.in);
     private UserController userController = new UserController();
     private BookController bookController = new BookController();
 
@@ -26,12 +21,14 @@ public class UserView {
     }
 
     public void deleteUser() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id in order to delete row : ");
         Long id = Long.parseLong(scanner.next());
         userController.deleteUser(id);
     }
 
     public void getByIdUser() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter id in order to get user :");
         Long id = Long.parseLong(scanner.next());
         try {
@@ -50,22 +47,23 @@ public class UserView {
 
     public void saveUser() throws SQLException {
         try {
+            Scanner scanner = new Scanner(System.in);
             User newUser = new User();
 
             System.out.println("Enter name :");
-            String username = scanner1.next();
+            String username = scanner.next();
             newUser.setUsername(username);
 
             System.out.println("Enter login :");
-            String login = scanner1.next();
+            String login = scanner.next();
             newUser.setLogin(login);
 
             System.out.println("Enter password :");
-            String password = scanner1.next();
+            String password = scanner.next();
             newUser.setPassword(password);
 
             System.out.println("Enter email :");
-            String mail = scanner1.next();
+            String mail = scanner.next();
             newUser.setMail(mail);
             // Придумать что то с сетом книг для юзера
 
@@ -102,26 +100,28 @@ public class UserView {
 
     public void updateUser() throws SQLException {
         try {
+            Scanner scanner = new Scanner(System.in);
+
             System.out.println("Enter id in order to find element :");
-            Long id = Long.parseLong(scanner2.next());
+            Long id = Long.parseLong(scanner.next());
 
             User newUser = new User();
             newUser = userController.getUserById(id);
 
             System.out.println("Enter name :");
-            String username = scanner3.nextLine();
+            String username = scanner.nextLine();
             newUser.setUsername(username);
 
             System.out.println("Enter login :");
-            String login = scanner3.nextLine();
+            String login = scanner.nextLine();
             newUser.setLogin(login);
 
             System.out.println("Enter password :");
-            String password = scanner3.nextLine();
+            String password = scanner.nextLine();
             newUser.setPassword(password);
 
             System.out.println("Enter email :");
-            String mail = scanner3.nextLine();
+            String mail = scanner.nextLine();
             newUser.setMail(mail);
 
 //            Set<Book> bookSet = new HashSet<>();
@@ -165,6 +165,8 @@ public class UserView {
             System.out.println(" 4. Update row  ");
             System.out.println(" 5. Search by id ");
             System.out.println(" 6. End ");
+
+            Scanner scanner = new Scanner(System.in);
             int number = scanner.nextInt();
             switch (number) {
                 case 1:
